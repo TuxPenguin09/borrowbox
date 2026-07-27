@@ -1,3 +1,3 @@
 [submodule "borrowbox/frontend/templates"]
 	path = borrowbox/frontend/templates
-	url = https://github.com/profrbazur/borrowBoxUIHTML.git
+	url = https://github.com/TuxPenguin09/borrowbox_frontend.git

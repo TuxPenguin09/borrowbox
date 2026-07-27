@@ -37,10 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # third-party
+    'rest_framework',
+    'corsheaders',
+
+    # local
     'frontend'
 ]
 
 MIDDLEWARE = [
+    # CorsMiddleware must come before CommonMiddleware per docs.
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Open CORS for local development. Lock this down before any non-local deploy.
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'borrowbox.urls'
 
@@ -116,3 +127,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# DRF: open API for this MVP. Permissions/login are deferred to a later pass.
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+# Plain AutoField for small, readable IDs in URLs and JSON for the school demo.
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

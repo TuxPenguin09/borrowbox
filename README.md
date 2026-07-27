@@ -139,3 +139,6 @@ python manage.py test frontend.tests.WorkflowTests.test_full_lifecycle_changes_s
 # Admin
 python manage.py createsuperuser
 ```
+
+## Members
+- Moritz Chester Saribay

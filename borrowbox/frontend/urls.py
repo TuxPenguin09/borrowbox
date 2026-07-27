@@ -12,21 +12,11 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 
-from . import views
-from .api import (
-    BorrowingRequestViewSet,
-    CategoryViewSet,
-    EmployeeViewSet,
-    ItemViewSet,
-    StudentViewSet,
-)
+from .api import EmployeeViewSet, StudentViewSet
 
 router = DefaultRouter()
 router.register(r'students', StudentViewSet, basename='student')
 router.register(r'employees', EmployeeViewSet, basename='employee')
-router.register(r'categories', CategoryViewSet, basename='category')
-router.register(r'items', ItemViewSet, basename='item')
-router.register(r'requests', BorrowingRequestViewSet, basename='borrowingrequest')
 
 TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
 
